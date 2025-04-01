@@ -1,0 +1,62 @@
+import java.util.Scanner;
+
+class Result extends Student {
+
+    public Result(String name, int roll, int sub1, int sub2, int sub3) {
+        super(name, roll, sub1, sub2, sub3);
+    }
+
+    // Method to check if student passes based on min marks
+    public void result(int min) {
+        if (m.sub1 >= min && m.sub2 >= min && m.sub3 >= min) {
+            System.out.println("Status: Pass");
+        } else {
+            System.out.println("Status: Fail");
+        }
+    }
+
+    // Overloaded method to check for scholarship eligibility
+    public void result(int min, int merit) {
+        if (m.sub1 >= min && m.sub2 >= min && m.sub3 >= min) {
+            float avg = m.calcAvg();
+            if (avg >= merit) {
+                System.out.println("Status: Pass with Scholarship Eligibility");
+            } else {
+                System.out.println("Status: Pass (No Scholarship)");
+            }
+        } else {
+            System.out.println("Status: Fail");
+        }
+    }
+}
+public class ResultDemo {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("Enter the name of the student:");
+        String name = scan.nextLine();
+
+        System.out.println("Enter the roll number:");
+        int roll = scan.nextInt();
+
+        System.out.println("Enter marks for three subjects:");
+        int sub1 = scan.nextInt();
+        int sub2 = scan.nextInt();
+        int sub3 = scan.nextInt();
+
+        // Create a Result object (without modifying Student.java)
+        Result student = new Result(name, roll, sub1, sub2, sub3);
+
+        // Display student marks
+        student.showMarklist();
+        student.showAvg();
+
+        // Check pass/fail with min 40 marks
+        student.result(40);
+
+        // Check scholarship eligibility with min 40 marks and merit threshold 75
+        student.result(40, 75);
+
+    }
+}
+	
